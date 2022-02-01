@@ -31,8 +31,16 @@ public class HomeSceneController {
   }
 
   @FXML
-  void playClicked(ActionEvent event) {
+  void playClicked(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("AnswerScene.fxml"));
+    Parent root = loader.load();
 
+    Scene scene = new Scene(root);
+
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    stage.setTitle("Flash card");
+    stage.setScene(scene);
+    stage.show();
   }
 
 }

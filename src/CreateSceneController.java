@@ -18,7 +18,6 @@ import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-
 public class CreateSceneController {
 
   @FXML
@@ -62,7 +61,9 @@ public class CreateSceneController {
     }
 
   }
-  @FXML Label menuHome;
+
+  @FXML
+  Label menuHome;
 
   @FXML
   void menuHome(ActionEvent event) throws IOException {
