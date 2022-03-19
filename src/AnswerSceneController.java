@@ -40,7 +40,7 @@ public class AnswerSceneController {
 
   @FXML
   Label menuHome;
- 
+
 
   @FXML 
   void menuHome(ActionEvent event) throws IOException {

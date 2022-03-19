@@ -3,7 +3,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -25,16 +26,16 @@ public class CreateSceneController {
   @FXML
   private TextArea answer;
 
-  Stack<String> question_list = new Stack<String>();
-  Stack<String> answer_list = new Stack<String>();
+  Queue<String> question_list = new LinkedList<>();
+  Queue<String> answer_list = new LinkedList<>();
 
   FileChooser fileChooser = new FileChooser();
 
   @FXML
   void nextCard(ActionEvent event) throws IOException {
 
-    question_list.push(question.getText());
-    answer_list.push(answer.getText());
+    question_list.add(question.getText());
+    answer_list.add(answer.getText());
     answer.setText("");
     question.setText("");
   }
@@ -44,14 +45,12 @@ public class CreateSceneController {
     File file = fileChooser.showSaveDialog(new Stage());
 
     if (file != null) {
-      Object[] val1 = question_list.toArray();
-      Object[] val2 = answer_list.toArray();
-
+      int size = question_list.size();
       try {
         PrintWriter printWriter = new PrintWriter(file);
-        for (int i = 0; i < val1.length; i++) {
-          printWriter.write(val1[i].toString() + "\n");
-          printWriter.write(val2[i].toString() + "\n");
+        for (int i = 0; i < size; i++) {
+          printWriter.write(question_list.poll() + "\n");
+          printWriter.write(answer_list.poll() + "\n");
         }
         printWriter.close();
       } catch (FileNotFoundException e) {
